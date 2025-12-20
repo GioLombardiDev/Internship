@@ -18,12 +18,14 @@ Work in progress. Experiments and conclusions may evolve as the project is final
 The internship dataset is confidential and is not included in this repository.
 
 ## Project overview
+This project studies short-term heat-load forecasting in an operational setting, covering day-ahead and week-ahead horizons across five target series.
+Models use historical heat-load signals with exogenous weather drivers. In experiments, future weather covariates are treated as known (in practice replaced by weather forecasts).
+The time series were derived from project data and reworked to mimic realistic behaviour, representing different scenarios (e.g. residential areas, industrial areas, and public buildings).
 
-The project consisted of the following:
-
+Main components of the work:
 - Built reproducible end-to-end statistical and deep-learning pipelines for data preparation, training, and evaluation (Python, PyTorch, StatsForecast, Darts)
-- Benchmarked statistical, traditional machine-learning, and deep-learning approaches (eg SARIMAX, XGBoost, LSTM, TFT)
-- Applied rigorous validation (rolling cross-validation, residual diagnostics, bootstrap-based significance testing)
+- Benchmarked statistical, traditional machine-learning, and deep-learning approaches (e.g. SARIMAX, XGBoost, encoder--decoder LSTM, TFT)
+- Applied an operationally realistic and rigorous validation protocol (rolling cross-validation, residual diagnostics, and Circular Block Bootstrap significance testing)
 - Conducted a focused literature review on time-series forecasting with exogenous drivers, Bayesian optimisation, and evaluation protocols
 
 ## Modelling approaches and benchmarks
@@ -38,12 +40,12 @@ Additional company benchmarks (provided as forecasts from existing production mo
 ## Main results (preliminary)
 
 **What worked best**
-- LSTM is strongest on structured (clear seasonality) series and maintains accuracy better at week-ahead horizons.
-- XGBoost is the most competitive baseline across settings.
+- LSTM is the most accurate model on structured (clear seasonality) series, with improvements confirmed by Circular Block Bootstrap significance tests, and maintains accuracy better at week-ahead horizons.
+- XGBoost is the most competitive benchmark across settings and is substantially faster to train and easier to scale.
 
 **Where models struggle**
-- SARIMAX degrades in transitional periods.
-- On noisier series, performance gaps narrow, suggesting limited signal in the available inputs.
+- SARIMAX degrades in transitional periods but performs strongly in winter, at a substantially higher computational cost than the machine-learning benchmarks.
+- On noisier series, performance gaps narrow, suggesting limited signal in the available inputs or a need for different training strategies (e.g. cross-series training and/or transfer learning).
 
 **Key driver**
 - Temperature provides most of the exogenous predictive value; other weather variables show little benefit.
@@ -52,15 +54,20 @@ Additional company benchmarks (provided as forecasts from existing production mo
 Evaluation uses historical weather rather than true forecast inputs, and tuning objectives differ slightly between thesis models (week-ahead focus) and company baselines (day-ahead focus).
 
 ## Repository structure
+Tracked in this repository:
+- `notebooks/`: exploratory analysis and modelling notebooks
+- `src/heat_forecast/`: Python modules for data handling, modelling, and evaluation
+- `pyproject.toml`: project metadata and configuration for installing the `heat_forecast` package
 
-- `notebooks/`: exploratory analysis and modelling notebooks  
-- `src/heat_forecast/`: Python modules for data handling and model implementations  
-- `pyproject.toml`: project metadata and the configuration for installing the `heat_forecast` package
+Expected local folders (shown via `.keep` placeholders, ignored by design):
+- `data/`: user-provided datasets (stored under `data/timeseries/`)
+- `models/`: saved model parameters
+- `results/`: training and testing outputs, including runtime metrics (training and inference times on CPU and GPU)
+- `logs/`: training and experiment logs
 
 ## Running the notebooks
 
-To run the full notebooks end-to-end, you will need to provide your own dataset and you may wish to save outputs (models, logs, results) locally.
-This repository includes the expected folder structure via `.keep` placeholder files, while data and generated artefacts are ignored by design.
+To run the notebooks end-to-end, you will need to provide your own dataset. Some notebooks (e.g. results comparison) assume that intermediate outputs have been generated and saved locally (e.g. results files). This repository includes the expected folder structure via `.keep` placeholder files, while data and generated artefacts are ignored by design.
 
 You can run the notebooks in two ways:
 
