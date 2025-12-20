@@ -1,15 +1,22 @@
-# --- data, models, results, logs, notes (ignored but kept visible) ---
-data/
-models/
-results/
-logs/
-notes/
+# --- runtime artefacts (ignored) + folder placeholders (.keep) ---
+data/**
+models/**
+results/**
+logs/**
 
-# keep empty folder placeholders
-!data/.keep
-!models/.keep
-!results/.keep
-!logs/.keep
+!data/**/
+!models/**/
+!results/**/
+!logs/**/
+
+!data/**/.keep
+!models/**/.keep
+!results/**/.keep
+!logs/**/.keep
+
+# Personal notes 
+notes/**
+
 
 # --- notebook & tool caches ---
 .ipynb_checkpoints/
@@ -54,3 +61,4 @@ chronos-venv/
 Thumbs.db
 .vscode/
 .idea/
+
