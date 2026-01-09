@@ -25,7 +25,7 @@ The time series were derived from project data and reworked to mimic realistic b
 
 Main components of the work:
 - Built reproducible end-to-end statistical and deep-learning pipelines for data preparation, training, and evaluation (Python, PyTorch, StatsForecast, Darts)
-- Benchmarked statistical, traditional machine-learning, and deep-learning approaches (e.g. SARIMAX, XGBoost, encoder--decoder LSTM, TFT)
+- Benchmarked statistical, traditional machine-learning, and deep-learning approaches (e.g. SARIMAX, XGBoost, encoder-decoder LSTM, TFT)
 - Applied an operationally realistic and rigorous validation protocol (rolling cross-validation, residual diagnostics, and Circular Block Bootstrap significance testing)
 - Conducted a focused literature review on time-series forecasting with exogenous drivers, Bayesian optimisation, and evaluation protocols
 
