@@ -1,7 +1,8 @@
-# Heat-Load Forecasting Internship (Work in Progress)
+# Heat-Load Forecasting (Work in Progress)
 
-This repository contains the code for my internship project at Optit on heat-load forecasting.  
-The work is still in progress, so the material should be considered a draft.
+This repository contains the code developed during an industry collaboration on short-term heat-load forecasting.  
+The work is still in progress, so the material should be considered a draft.  
+Thesis draft (PDF): [docs/thesis_draft.pdf](docs/thesis_draft.pdf)
 
 The project includes a simple `pyproject.toml` configuration so that the `heat_forecast` package can be installed locally. From the project root, you can run:
 
@@ -11,7 +12,7 @@ pip install -e .
 
 ## Status
 
-Work in progress. Experiments and conclusions may evolve as the project is finalised. 
+Work in progress. Experiments and conclusions may evolve as the project is finalised. See docs/thesis_draft.pdf for the current thesis draft.
 
 ## Data
 
@@ -55,6 +56,7 @@ Evaluation uses historical weather rather than true forecast inputs, and tuning 
 
 ## Repository structure
 Tracked in this repository:
+- `docs/`: thesis draft PDF (thesis_draft.pdf)
 - `notebooks/`: exploratory analysis and modelling notebooks
 - `src/heat_forecast/`: Python modules for data handling, modelling, and evaluation
 - `pyproject.toml`: project metadata and configuration for installing the `heat_forecast` package
